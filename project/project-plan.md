@@ -40,7 +40,10 @@ The data set provides signal strength and signal quality for mobile communicatio
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
 
 1. Creation of a data pipeline [#1][i1]
-2. Automation of testing
-3. 
+3. Data Cleansing & Transformation [#2][i2]
+5. Automation of Testing [#3][i3]
+6. Data Analysis [#4][i4] 
+7. Data Interpretation [#5][i5]
+8. Project Publication [#6][i6]
 
 [i1]: https://github.com/jvalue/2023-amse-template/issues/1
