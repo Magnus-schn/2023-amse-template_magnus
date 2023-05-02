@@ -40,7 +40,7 @@ The data set provides signal strength and signal quality for mobile communicatio
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
 
 1. Batch Data and data Ingestion [#1][i1]
-2. Data Cleansing & Transformation [#2] [i2]
+2. Data Cleansing & Transformation [#2][i2]
 3. Automation of Testing [#3][i3]
 4. Data Analysis [#4][i4]
 5. Data Interpretation [#5][i5]
