@@ -39,11 +39,16 @@ The data set provides signal strength and signal quality for mobile communicatio
 
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
 
-1. Creation of a data pipeline [#1][i1]
-3. Data Cleansing & Transformation [#2]
-5. Automation of Testing [#3]
-6. Data Analysis [#4]
-7. Data Interpretation [#5]
-8. Project Publication [#6]
+1. Batch Data and data Ingestion [#1][i1]
+2. Data Cleansing & Transformation [#2][i2]
+3. Automation of Testing [#3][i3]
+4. Data Analysis [#4][i4]
+5. Data Interpretation [#5][i5]
+6. Project Publication [#6][i6]
 
-[i1]: https://github.com/jvalue/2023-amse-template/issues/1
+[i1]: https://github.com/Magnus-schn/2023-amse-template_magnus/issues/1
+[i1]: https://github.com/Magnus-schn/2023-amse-template_magnus/issues/2
+[i1]: https://github.com/Magnus-schn/2023-amse-template_magnus/issues/3
+[i1]: https://github.com/Magnus-schn/2023-amse-template_magnus/issues/4
+[i1]: https://github.com/Magnus-schn/2023-amse-template_magnus/issues/5
+[i1]: https://github.com/Magnus-schn/2023-amse-template_magnus/issues/6
