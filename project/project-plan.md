@@ -47,8 +47,8 @@ The data set provides signal strength and signal quality for mobile communicatio
 6. Project Publication [#6][i6]
 
 [i1]: https://github.com/Magnus-schn/2023-amse-template_magnus/issues/1
-[i1]: https://github.com/Magnus-schn/2023-amse-template_magnus/issues/2
-[i1]: https://github.com/Magnus-schn/2023-amse-template_magnus/issues/3
-[i1]: https://github.com/Magnus-schn/2023-amse-template_magnus/issues/4
-[i1]: https://github.com/Magnus-schn/2023-amse-template_magnus/issues/5
-[i1]: https://github.com/Magnus-schn/2023-amse-template_magnus/issues/6
+[i2]: https://github.com/Magnus-schn/2023-amse-template_magnus/issues/2
+[i3]: https://github.com/Magnus-schn/2023-amse-template_magnus/issues/3
+[i4]: https://github.com/Magnus-schn/2023-amse-template_magnus/issues/4
+[i5]: https://github.com/Magnus-schn/2023-amse-template_magnus/issues/5
+[i6]: https://github.com/Magnus-schn/2023-amse-template_magnus/issues/6
