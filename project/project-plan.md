@@ -3,37 +3,28 @@
 ## Summary
 
 <!-- Describe your data science project in max. 5 sentences. -->
-This project analyzes the radio signal distribution at stations of DB RegioNetz Infrastruktur GmbH and DB Station&Service AG. The aim is to identify the stations where the radio signal reception should be improved in order to offer an enhanced travel experience to passengers of public transport. With possible further available data sets, the radio signal availability on the most important railroad lines can also be analyzed and thus, in times of mobile work, weak points in the network availability in connection with railroad lines can be uncovered.
+This Data Engineering project analyzes the correlation between the frequency of checks conducted on air transport of dangerous goods and the number of accidents that occur. Using a dataset on the frequency of checks and the number of accidents, we will perform statistical analysis and develop predictive models to identify any correlations and improve safety in the transportation of dangerous goods. The insights gained from this project can inform policy decisions and resource allocation in the transportation industry.
 
 ## Rationale
 
 <!-- Outline the impact of the analysis, e.g. which pains it solves. -->
-The analysis helps to identify weak points in network availability and thus facilitate travel by public transport
+This Data Engineering project aims to identify the correlation between the frequency of checks and the number of accidents in air transport of dangerous goods. The insights gained from this project can help inform policy decisions regarding the optimal frequency of checks needed to ensure safety in the transportation of dangerous goods. This could lead to more efficient resource allocation and a reduction in accidents and injuries, increasing public trust in the safety of air transport.
 
 ## Datasources
 
 <!-- Describe each datasources you plan to use in a section. Use the prefic "DatasourceX" where X is the id of the datasource. -->
 
-### Datasource1: List of stations to be operated by DB Station&Service AG
-* Metadata URL: https://mobilithek.info/offers/573361342675562496
-* Data URL: https://raw.githubusercontent.com/od-ms/radverkehr-zaehlstellen/main/100035541/2019-01.csv
-* Data Type: CSV
+### Datasource1: Dangerous goods checks by the Federal Aviation Authority
+* Metadata URL: https://mobilithek.info/offers/573202559454343168
+* Data Type: XLSX
 
-Stations DB S+S List of stations to be operated by DB Station&Service AG
+Number of dangerous goods checks carried out by the Federal Office of Civil Aviation by year.
 
-### Datasource2: List of stations to be operated by DB RegioNetz Infrastruktur GmbH
-* Metadata URL: https://mobilithek.info/offers/573361314154344448
-* Data URL: https://raw.githubusercontent.com/od-ms/radverkehr-zaehlstellen/main/100035541/2019-01.csv
-* Data Type: CSV
+### Datasource2: Dangerous goods incidents reported to the LBA
+* Metadata URL: https://mobilithek.info/offers/573202542534500352
+* Data Type: XLSX
 
-Stations RNI List of stations to be operated by DB RegioNetz Infrastruktur GmbH.
-
-### Datasource3: Mobile radio signal strength & signal quality for GSM, UMTS and LTE
-* Metadata URL: https://mobilithek.info/offers/577101012068614144
-* Data URL: https://raw.githubusercontent.com/od-ms/radverkehr-zaehlstellen/main/100035541/2019-01.csv
-* Data Type: CSV
-
-The data set provides signal strength and signal quality for mobile communications connections of the most widespread mobile network operators in Germany by means of various parameters. Data is provided for the mobile communications technologies GSM, UMTS and LTE.
+Number of dangerous goods incidents reported to the German Federal Aviation Authority per year.
 
 ## Work Packages
 
