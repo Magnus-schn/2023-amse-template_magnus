@@ -23,6 +23,7 @@ Number of dangerous goods checks carried out by the Federal Office of Civil Avia
 
 ### Datasource2: Dangerous goods incidents reported to the LBA
 * Metadata URL: https://mobilithek.info/offers/573202542534500352
+* Data URL: https://github.com/Magnus-schn/2023-amse-template_magnus/blob/6aff6c7dd66e2c8e464a2d9887af481fcd7256c4/Gefahrgutzwischenfaelle.xlsx
 * Data Type: XLSX
 
 Number of dangerous goods incidents reported to the German Federal Aviation Authority per year.
