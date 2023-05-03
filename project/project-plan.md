@@ -16,6 +16,7 @@ This Data Engineering project aims to identify the correlation between the frequ
 
 ### Datasource1: Dangerous goods checks by the Federal Aviation Authority
 * Metadata URL: https://mobilithek.info/offers/573202559454343168
+* Data URL: https://github.com/Magnus-schn/2023-amse-template_magnus/blob/a33e02c70ef71f32eecb983e0e3cef405982a0ab/Gefahrgutkontrollen.xlsx
 * Data Type: XLSX
 
 Number of dangerous goods checks carried out by the Federal Office of Civil Aviation by year.
