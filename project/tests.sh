@@ -1,5 +1,5 @@
-echo ~~~ Running Pipeline~~~
+echo ~~~ Start Pipeline~~~
 python ../data/data_pipeline.py
-echo ~~~ Executing automated tests for the project. ~~~
+echo ~~~ Automated Test ~~~
 python test.py
 echo ~~~ Testing done. ~~~
