@@ -35,14 +35,14 @@ block StatusDeleter oftype ColumnDeleter {
 block trainstopsTableInterpreter oftype TableInterpreter {
 header: true;
 columns: [
-"EVA_NR" oftype Value,
-"DS100" oftype Value,
+"EVA_NR" oftype text,
+"DS100" oftype text,
 "IFOPT" oftype IFOPT,
-"NAME" oftype Value,
+"NAME" oftype text,
 "Verkehr" oftype Verkehr,
 "Laenge" oftype Laenge,
 "Breite" oftype Laenge,
-"Betreiber_Name" oftype Value,
+"Betreiber_Name" oftype text,
 "Betreiber_Nr" oftype integer,
 ];
 }
