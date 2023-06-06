@@ -1,0 +1,61 @@
+valuetype NotEmpty oftype text {
+  constraints: [ NotEmpty ];
+}
+
+constraint NotEmpty oftype DenylistConstraint {
+  denylist: [""];
+}
+
+valuetype IFOPT oftype text {
+  constraints: [ IFOPT_Format, NotEmpty ];
+}
+
+constraint IFOPT_Format oftype RegexConstraint {
+  regex: /[a-z]{2}:\d+:\d+(:\d+)?(:\d+)?/;
+}
+
+valuetype Verkehr oftype text {
+  constraints: [ Verkehr, NotEmpty ];
+}
+
+constraint Verkehr oftype AllowlistConstraint {
+  allowlist: ["FV", "RV", "nur DPN"];
+}
+
+valuetype Laenge oftype integer {
+  constraints: [ Laenge, NotEmpty ];
+}
+
+constraint Laenge oftype RangeConstraint {
+  lowerBound: -90;
+  upperBound: 90;
+}
+
+pipeline trainstopsPipeline {
+block DataExtractor oftype HttpExtractor { url: "https://opendata.rhein-kreis-neuss.de/api/v2/catalog/datasets/rhein-kreis-neuss-flughafen-weltweit/exports/csv"; }
+block trainstopsTextFileInterpreter oftype TextFileInterpreter {}
+block trainstopsCSVInterpreter oftype CSVInterpreter { enclosing: '"'; delimiter ";" }
+block trainstopsTableInterpreter oftype TableInterpreter {
+header: true;
+columns: [
+"EVA_NR" oftype integer,
+"IFOPT" oftype IFOPT,
+"NAME" oftype text,
+"Verkehr" oftype Verkehr,
+"Laenge" oftype Laenge,
+"Breite" oftype Laenge,
+"Betreiber_Name" oftype text,
+"Betreiber_Nr" oftype integer,
+"Status" oftype text,
+];
+}
+block StatusColumnDeleter oftype ColumnDeleter {
+    delete: [column "Status"];
+  }
+block DatabaseLoader oftype SQLiteLoader { table: "trainstops"; file: "./trainstops.sqlite"; }
+DataExtractor
+->trainstopsFileInterpreter
+->trainstopsCSVInterpreter
+->trainstopsTableInterpreter
+->DatabaseLoader;
+}
