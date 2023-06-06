@@ -1,44 +1,36 @@
-valuetype NotEmpty oftype text {
-  constraints: [ NotEmpty ];
+constraint IFOPT oftype RegexConstraint {
+  regex: /[a-z]{2}:\d+\d+(:\d+)?(:\d+)?/;
 }
-
-constraint NotEmpty oftype DenylistConstraint {
-  denylist: [""];
-}
-
 valuetype IFOPT oftype text {
-  constraints: [ IFOPT_Format, NotEmpty ];
+  constraints: [ IFOPT ];
 }
-
-constraint IFOPT_Format oftype RegexConstraint {
-  regex: /[a-z]{2}:\d+:\d+(:\d+)?(:\d+)?/;
-}
-
-valuetype Verkehr oftype text {
-  constraints: [ Verkehr, NotEmpty ];
-}
-
 constraint Verkehr oftype AllowlistConstraint {
   allowlist: ["FV", "RV", "nur DPN"];
 }
-
-valuetype Laenge oftype integer {
-  constraints: [ Laenge, NotEmpty ];
+valuetype Verkehr oftype text {
+  constraints: [ Verkehr];
 }
-
 constraint Laenge oftype RangeConstraint {
   lowerBound: -90;
+  lowerBoundInclusive: true;
   upperBound: 90;
+  upperBoundInclusive: true;
 }
-
+valuetype Laenge oftype integer {
+  constraints: [ Laenge ];
+}
 pipeline trainstopsPipeline {
-block DataExtractor oftype HttpExtractor { url: "https://opendata.rhein-kreis-neuss.de/api/v2/catalog/datasets/rhein-kreis-neuss-flughafen-weltweit/exports/csv"; }
+block DataExtractor oftype HttpExtractor { url: "https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV"; }
 block trainstopsTextFileInterpreter oftype TextFileInterpreter {}
-block trainstopsCSVInterpreter oftype CSVInterpreter { enclosing: '"'; delimiter ";" }
+block trainstopsCSVInterpreter oftype CSVInterpreter { delimiter: ";" ;}
+block StatusColumnDeleter oftype ColumnDeleter {
+    delete: [column J ];
+  }
 block trainstopsTableInterpreter oftype TableInterpreter {
 header: true;
 columns: [
-"EVA_NR" oftype integer,
+"EVA_NR" oftype text,
+"DS100" oftype text,
 "IFOPT" oftype IFOPT,
 "NAME" oftype text,
 "Verkehr" oftype Verkehr,
@@ -46,16 +38,13 @@ columns: [
 "Breite" oftype Laenge,
 "Betreiber_Name" oftype text,
 "Betreiber_Nr" oftype integer,
-"Status" oftype text,
 ];
 }
-block StatusColumnDeleter oftype ColumnDeleter {
-    delete: [column "Status"];
-  }
-block DatabaseLoader oftype SQLiteLoader { table: "trainstops"; file: "./trainstops.sqlite"; }
+block DatabaseLoader oftype SQLiteLoader { table: "airports"; file: "./airports.sqlite"; }
 DataExtractor
-->trainstopsFileInterpreter
+->trainstopsTextFileInterpreter
 ->trainstopsCSVInterpreter
+->StatusColumnDeleter
 ->trainstopsTableInterpreter
 ->DatabaseLoader;
 }
