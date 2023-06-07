@@ -1,29 +1,30 @@
-constraint Value oftype DenylistConstraint {
-  denylist: [""];
-}
+
 valuetype Value oftype text {
   constraints: [ Value ];
 }
-constraint IFOPT oftype RegexConstraint {
-  regex: /[a-z]{2}:\d+\d+(:\d+)?(:\d+)?/;
+constraint Value oftype DenylistConstraint {
+  denylist: [""];
 }
 valuetype IFOPT oftype text {
   constraints: [ IFOPT, Value ];
 }
-constraint Verkehr oftype AllowlistConstraint {
-  allowlist: ["FV", "RV", "nur DPN"];
+constraint IFOPT oftype RegexConstraint {
+  regex: /[a-z]{2}:\d+\d+(:\d+)?(:\d+)?/;
 }
 valuetype Verkehr oftype text {
   constraints: [ Verkehr, Value];
+}
+constraint Verkehr oftype AllowlistConstraint {
+  allowlist: ["FV", "RV", "nur DPN"];
+}
+valuetype Laenge oftype integer {
+  constraints: [ Laenge ];
 }
 constraint Laenge oftype RangeConstraint {
   lowerBound: -90;
   lowerBoundInclusive: true;
   upperBound: 90;
   upperBoundInclusive: true;
-}
-valuetype Laenge oftype integer {
-  constraints: [ Laenge ];
 }
 pipeline trainstopsPipeline {
 block DataExtractor oftype HttpExtractor { url: "https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV"; }
