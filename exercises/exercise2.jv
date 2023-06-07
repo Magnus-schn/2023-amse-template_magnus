@@ -48,7 +48,7 @@ columns: [
 "Status" oftype text,
 ];
 }
-block DatabaseLoader oftype SQLiteLoader { table: "trainstops"; file: "./trainstops.sqlite"; }
+block DatabaseLoader oftype SQLiteLoader { table: "Trainstops"; file: "./trainstops.sqlite"; }
 DataExtractor
 ->trainstopsTextFileInterpreter
 ->trainstopsCSVInterpreter
