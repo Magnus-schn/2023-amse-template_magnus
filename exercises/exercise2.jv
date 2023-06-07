@@ -17,7 +17,7 @@ valuetype Verkehr oftype text {
 constraint VerkehrC oftype AllowlistConstraint {
   allowlist: ["FV", "RV", "nur DPN"];
 }
-valuetype Laenge oftype integer {
+valuetype Laenge oftype decimal {
   constraints: [ LaengeC ];
 }
 constraint LaengeC oftype RangeConstraint {
