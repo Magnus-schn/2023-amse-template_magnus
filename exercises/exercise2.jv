@@ -45,6 +45,7 @@ columns: [
 "Breite" oftype Laenge,
 "Betreiber_Name" oftype Value,
 "Betreiber_Nr" oftype integer,
+"Status" oftype text,
 ];
 }
 block DatabaseLoader oftype SQLiteLoader { table: "trainstops"; file: "./trainstops.sqlite"; }
