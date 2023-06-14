@@ -30,7 +30,7 @@ df2= df2.set_index('Year')
 #print(df2)
 
 # Create a SQLite connection
-conn = sqlite3.connect('data/database.db')
+conn = sqlite3.connect('./data/database.db')
 
 # Write DataFrames to SQLite tables
 df1.to_sql('Gefahrenkontrollen', conn, if_exists="replace")
