@@ -15,12 +15,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set up Node
-        uses: actions/setup-node@v3
-        with:
-            node-version: 'lts/*'
-
-        # Install python
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v4
@@ -35,7 +29,6 @@ jobs:
             pip install SQLAlchemy
             pip install openpyxl
 
-        # Run test file
 
       - name: Execute Test file
         run: sh project/tests.sh

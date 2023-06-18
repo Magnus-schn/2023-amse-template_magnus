@@ -1,7 +1,7 @@
 import os
 import sqlite3
 
-conn = sqlite3.connect('./data/database.db')
+conn = sqlite3.connect('data/database.db')
 
 def check_db_file_exists(conn):
     if os.path.isfile(conn):
@@ -10,5 +10,5 @@ def check_db_file_exists(conn):
         print(f"The database file '{conn}' does not exist.")
 
 # Example usage
-database_file = "data/database.db"
+database_file = "./data/database.db"
 check_db_file_exists(database_file)
