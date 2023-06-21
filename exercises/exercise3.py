@@ -27,7 +27,19 @@ df['CIN'] = df['CIN'].astype(str).str[:5].str.pad(width=5, side='right', fillcha
 
 df = df[df[['petrol', 'diesel', 'gas', 'electro', 'hybrid', 'plugInHybrid', 'others']].apply(pd.to_numeric, errors='coerce').gt(0).all(axis=1)]  # Positive integer validation
 
-
+data_types = {
+    "date" : str,
+    "CIN" : str,
+    "name" : str,
+    "diesel": int,
+    "electro": int,
+    "gas": int,
+    "hybrid": int,
+    "plugInHybrid": int,
+    "others": int,
+    "petrol": int
+}    
+df = df.astype(data_types)
 # Create a SQLite database engine and write the DataFrame to a table
 
 engine = create_engine(f'sqlite:///{database_name}')
