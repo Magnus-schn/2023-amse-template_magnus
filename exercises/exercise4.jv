@@ -1,22 +1,47 @@
 transform CelsiusToFahrenheit {
-  from temperaturCelsius oftype decimal;
-  to temperaturFahrenheit oftype decimal;
+    from tempCelsius oftype decimal;
+    to tempFahrenheit oftype decimal;
 
-  temperaturFahrenheit: (tempCelsius * 9/5) + 32;
+    tempFahrenheit: (tempCelsius * 9) / 5 + 32 ;
 }
 
-pipeline TemperaturPipeline{
-    block DataExtractor oftype HttpExtractor {url: "https://www.mowesta.com/data/measure/mowesta-dataset-20221107.zip"; }
-    block ZipArchiveInterpreter oftype ArchiveInterpreter { archiveType: "zip";}
-    block DataFilePicker oftype FilePicker { path: "/data.csv";}
-    block DataTextFileInterpreter oftype TextFileInterpreter {}
-    block DataCSVInterpreter oftype CSVInterpreter {enclosing: '"'; delimiter: ";";}
-    block ColumnDataSelector oftype CellRangeSelector {select: range A1:K*;}
-    block FGHIColumnDeleter oftype ColumnDeleter { delete: [column F,column G,column H,column I]; }
-    block DataTableInterpreter oftype TableInterpreter {
-        header: false;
+valuetype NoEmptyInt oftype integer {
+    constraints: [ NoEmptyInt ];
+}
+
+constraint NoEmptyInt oftype RangeConstraint {
+    lowerBound: 0;
+    upperBound: 1000000000;      
+}
+
+pipeline BatteryPipeline {
+    block DataExtractor oftype HttpExtractor { url: "https://www.mowesta.com/data/measure/mowesta-dataset-20221107.zip"; }
+    block ZipArchiveInterpreter oftype ArchiveInterpreter {
+        archiveType: "zip";
+    }
+    block BatteryFilePicker oftype FilePicker {
+        path: "/data.csv";
+    }
+    block BatteryTextFileInterpreter oftype TextFileInterpreter {}
+    
+    block BatteryCSVInterpreter oftype CSVInterpreter { 
+        delimiter: ";";
+    }
+    block ColumnDataSelector oftype CellRangeSelector {
+        select: range A1:K*;
+    }
+    block TemperaturHeaderWriter oftype CellWriter {
+        at: cell E1;
+        write: ["Temperatur"];
+    }
+    block BatterietemperaturHeaderWriter oftype CellWriter {
+        at: cell J1;
+        write: ["Batterietemperatur"];
+    }
+    block BatteryTableInterpreter oftype TableInterpreter {
+        header: true;
         columns: [
-            "Geraet" oftype integer,
+            "Geraet" oftype NoEmptyInt,
             "Hersteller" oftype text,
             "Model" oftype text,
             "Monat" oftype integer,
@@ -25,32 +50,32 @@ pipeline TemperaturPipeline{
             "Geraet aktiv" oftype text
         ];
     }
-    block CelsiusToFahrenheitTTransformer oftype TableTransformer {
+    block CelsiusToFahrenheitTransformer1 oftype TableTransformer {
         inputColumn: 'Temperatur';
         outputColumn: 'Temperatur';
         use: CelsiusToFahrenheit;
     }
-
-    block CelsiusToFahrenheitBTTransformer oftype TableTransformer {
+    block CelsiusToFahrenheitTransformer2 oftype TableTransformer {
         inputColumn: 'Batterietemperatur';
         outputColumn: 'Batterietemperatur';
         use: CelsiusToFahrenheit;
     }
-
-       block DatabaseLoader oftype SQLiteLoader { 
+    block DatabaseLoader oftype SQLiteLoader { 
         table: "temperatures"; 
-        file: "./temperatures.sqlite"; 
+        file: "temperatures.sqlite"; 
     }
 
     DataExtractor
     ->ZipArchiveInterpreter
-    ->DataFilePicker
-    ->DataTextFileInterpreter
-    ->DataCSVInterpreter
+    ->BatteryFilePicker
+    ->BatteryTextFileInterpreter
+    ->BatteryCSVInterpreter
     ->ColumnDataSelector
-    ->FGHIColumnDeleter
-    ->DataTableInterpreter
-    ->CelsiusToFahrenheitTTransformer
-    ->CelsiusToFahrenheitBTTransformer
-    ->DatabaseLoader;
-}
+    ->TemperaturHeaderWriter
+    ->BatterietemperaturHeaderWriter
+    ->BatteryTableInterpreter
+    ->CelsiusToFahrenheitTransformer1
+    ->CelsiusToFahrenheitTransformer2
+    ->DatabaseLoader
+;}
+
