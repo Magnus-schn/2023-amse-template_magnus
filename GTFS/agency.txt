@@ -1,3 +1,0 @@
-"agency_id","agency_name","agency_url","agency_timezone","agency_lang","agency_phone","agency_fare_url"
-"1","RhönEnergie Fulda GmbH","https://re-fd.de/nahverkehr","Europe/Berlin","de","(0661) 12-375","https://www.rmv.de"
-"2","Lokale Nahverkehrsgesellschaft Fulda mbH","http://www.lng-fulda.de/","Europe/Berlin","de","","https://www.rmv.de"
