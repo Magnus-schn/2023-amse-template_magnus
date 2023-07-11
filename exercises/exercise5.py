@@ -11,9 +11,8 @@ Columns = ["stop_id","stop_name", "stop_lat", "stop_lon", "zone_id"]
 Datatype = {"stop_id" : int, "stop_name" : str, "stop_lat" : float, "stop_lon" : float, "zone_id" : int}
 df = pd.read_csv("./exercises/stops.txt",sep=',', decimal='.', index_col=False, usecols=Columns, dtype=Datatype, encoding='utf-8')
 
-df = df[(df["zone_id"] == 2001)]
-
-df = df[(df["stop_lat"] >= -90) & (df["stop_lat"] <= 90) & (df["stop_lon"] >= -90) & (df["stop_lon"] <= 90)]
+df = df[df["zone_id"] == 2001]
+df = df[df["stop_lat"].between(-90, 90) & df["stop_lon"].between(-90, 90)]
 
 #print(df)
 
